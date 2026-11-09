@@ -1,6 +1,8 @@
 import type {RowDataPacket} from "mysql2";
-import Form from "./components/Form";
+import AddTodoForm from "./components/AddTodoForm";
 import pool from "@/lib/db";
+import ToggleTodoDone from "./components/ToggleTodoDone";
+import ToggleTodoDelete from "./components/ToggleTodoDelete";
 
 interface Todo extends RowDataPacket {
   id: number;
@@ -15,11 +17,13 @@ export default async function Home() {
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center  py-32 px-16 bg-white dark:bg-black sm:items-start">
         <h1>Todo List</h1>
-        <Form />
+        <AddTodoForm />
         <ul>
           {todos.map((todo) => (
-            <li key={todo.id}>
-              {todo.done ? "✅" : "⬜"} {todo.title}
+            <li key={todo.id} className="flex">
+              <ToggleTodoDone todo={todo} />
+              <ToggleTodoDelete todo={todo} />
+              {todo.title}
             </li>
           ))}
         </ul>

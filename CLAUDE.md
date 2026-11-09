@@ -21,6 +21,7 @@ Project ini adalah tempat belajar, bukan aplikasi produksi. Gunakan bahasa Indon
 - Pesan harus ringkas. Teks yang terlalu panjang membuat saya melewatkan isinya.
 - Setiap latihan harus disertai contoh hasil akhir yang konkret (tabel, URL, atau HTML yang diharapkan), supaya targetnya jelas.
 - Jangan mengubah konfigurasi atau struktur folder tanpa menjelaskan alasannya dan meminta persetujuan.
+- Setiap poin review harus menjelaskan **di mana** (file + baris), **kenapa** salah, dan **bagaimana** arah perbaikannya. Jangan hanya menyebut masalahnya. Ingat bahwa saya masih pemula di Next.js.
 
 ## Roadmap
 
