@@ -15,20 +15,23 @@ export default async function Home() {
   const [todos] = await pool.query<Todo[]>("SELECT * FROM todos");
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center  py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <h1>Todo List</h1>
-        <AddTodoForm />
-        <ul>
-          {todos.map((todo) => (
-            <li key={todo.id} className="flex">
-              <ToggleTodoDone todo={todo} />
-              <ToggleTodoDelete todo={todo} />
-              <Link href={`/${todo.id}`}>{todo.title}</Link>
-            </li>
-          ))}
-        </ul>
-      </main>
-    </div>
+    <>
+      <h1 className="mb-4 text-2xl font-bold">Todo List</h1>
+      <AddTodoForm />
+      <ul className="mt-6 divide-y divide-zinc-200">
+        {todos.map((todo) => (
+          <li key={todo.id} className="flex items-center gap-3 py-2">
+            <ToggleTodoDone todo={todo} />
+            <Link
+              href={`/${todo.id}`}
+              className={`flex-1 hover:underline ${todo.done ? "line-through" : ""}`}
+            >
+              {todo.title}
+            </Link>
+            <ToggleTodoDelete todo={todo} />
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

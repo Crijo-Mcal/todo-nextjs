@@ -10,30 +10,30 @@ export default function AddTodoForm() {
   const [state, formAction, pending] = useActionState(addTodo, initialSate);
 
   return (
-    <div className="w-fit rounded-md bg-amber-300 p-3">
-      <form action={formAction} className="flex flex-col gap-2 text-black">
+    <div>
+      <form action={formAction} className="flex gap-2">
         <input
           type="text"
           name="title"
           placeholder="Masukkan title..."
           required
-          className="rounded border border-gray-400 bg-white px-3 py-2 outline-none"
+          className="flex-1 rounded-md border border-zinc-300 px-3 py-2 outline-none focus:border-cyan-500"
         />
 
         <button
           type="submit"
           disabled={pending}
-          className="rounded bg-cyan-500 px-4 py-2 text-white hover:bg-cyan-600 disabled:opacity-50"
+          className="rounded-md bg-cyan-600 px-4 py-2 text-white hover:bg-cyan-700 disabled:opacity-50"
         >
           {pending ? "Menyimpan..." : "Simpan"}
         </button>
-
-        {!state.success ? (
-          <p className="text-sm text-red-600">{state.message}</p>
-        ) : (
-          <p className="text-sm text-green-600">{state.message}</p>
-        )}
       </form>
+
+      {!state.success ? (
+        <p className="mt-2 text-sm text-red-600">{state.message}</p>
+      ) : (
+        <p className="mt-2 text-sm text-green-600">{state.message}</p>
+      )}
     </div>
   );
 }

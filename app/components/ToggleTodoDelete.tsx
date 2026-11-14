@@ -12,7 +12,7 @@ export default function ToggleTodoDelete({todo}: ToggleTodoDeleteProp) {
       <form action={deleteTodo}>
         <input type="hidden" name="id" value={todo.id} />
 
-        <button className="cursor-pointer" type="submit">
+        <button className="cursor-pointer opacity-50 hover:opacity-100" type="submit">
           ❌
         </button>
       </form>

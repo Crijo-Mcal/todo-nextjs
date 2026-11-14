@@ -18,13 +18,24 @@ export default function UpdateTodoFrom(params: UpdateTodoFromProp) {
   );
 
   return (
-    <form action={formAction}>
-      <input type="text" name="title" defaultValue={params.title} />
+    <form action={formAction} className="flex flex-col gap-3">
+      <input
+        type="text"
+        name="title"
+        defaultValue={params.title}
+        className="rounded-md border border-zinc-300 px-3 py-2 outline-none focus:border-cyan-500"
+      />
       <input type="hidden" name="id" defaultValue={params.id} />
-      <button type="submit" disabled={pendiong}>
-        simpan
+      <button
+        type="submit"
+        disabled={pendiong}
+        className="rounded-md bg-cyan-600 px-4 py-2 text-white hover:bg-cyan-700 disabled:opacity-50"
+      >
+        {pendiong ? "Menyimpan..." : "Simpan"}
       </button>
-      <p>{state.message}</p>
+      <p className={`text-sm ${state.success ? "text-green-600" : "text-red-600"}`}>
+        {state.message}
+      </p>
     </form>
   );
 }
