@@ -1,4 +1,5 @@
 import type {RowDataPacket} from "mysql2";
+import Link from "next/link";
 import AddTodoForm from "./components/AddTodoForm";
 import pool from "@/lib/db";
 import ToggleTodoDone from "./components/ToggleTodoDone";
@@ -23,7 +24,7 @@ export default async function Home() {
             <li key={todo.id} className="flex">
               <ToggleTodoDone todo={todo} />
               <ToggleTodoDelete todo={todo} />
-              {todo.title}
+              <Link href={`/${todo.id}`}>{todo.title}</Link>
             </li>
           ))}
         </ul>

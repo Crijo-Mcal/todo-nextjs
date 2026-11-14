@@ -4,7 +4,7 @@ import pool from "@/lib/db";
 
 export type DataToDO = {
     message: string;
-    success: boolean
+    success: boolean;
 }
 
 export async function addTodo(prevState: DataToDO, formData: FormData): Promise<DataToDO> {
@@ -23,7 +23,7 @@ export async function addTodo(prevState: DataToDO, formData: FormData): Promise<
 }
 
 
-export async function updateTodo(formData: FormData): Promise<void> {
+export async function updateTodoDone(formData: FormData): Promise<void> {
 
     const id = formData.get('id');
     const done = formData.get('done');
@@ -49,6 +49,27 @@ export async function deleteTodo(formData: FormData): Promise<void> {
 
     await pool.execute("DELETE FROM `todos` WHERE `id`=?", [todoId])
     refresh();
+}
+
+
+export async function updateTodo(preState: DataToDO, formData: FormData): Promise<DataToDO> {
+
+    const id = formData.get('id');
+    const title = formData.get('title');
+
+
+    const todoId = Number(id);
+    if (!Number.isInteger(todoId) || todoId <= 0) {
+        return { message: 'require valid id', success: false }
+    }
+
+    if (typeof title !== "string" || title.trim() === "") {
+        return { message: 'require input', success: false }
+    }
+
+    const responce = await pool.execute("UPDATE `todos` SET `title`= ? WHERE `id`=?", [title, todoId])
+    refresh();
+    return { message: 'success', success: true }
 }
 
 

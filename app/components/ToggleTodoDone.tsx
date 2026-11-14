@@ -1,4 +1,4 @@
-import {updateTodo} from "../action";
+import {updateTodoDone} from "../action";
 
 type ToggleTodoDoneProp = {
   todo: {
@@ -10,7 +10,7 @@ type ToggleTodoDoneProp = {
 export default function ToggleTodoDone({todo}: ToggleTodoDoneProp) {
   return (
     <>
-      <form action={updateTodo}>
+      <form action={updateTodoDone}>
         <input type="hidden" name="id" value={todo.id} />
         <input type="hidden" name="done" value={todo.done} />
 
